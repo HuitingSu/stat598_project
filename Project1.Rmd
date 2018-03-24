@@ -1,0 +1,15 @@
+setwd('~/Purdue/Class/Winter 2018/STAT598/Project')
+read.csv('GSM2417263_G0.filt.5000.rebin.csv')
+df_G0 <- read.csv('GSM2417263_G0.filt.5000.rebin.csv')
+
+df_G0_norm <- df_G0
+row.names(df_G0_norm) <- df_G0_norm[,1]
+df_G0_norm <- df_G0_norm[,-1]
+
+
+non0 <- rowSums(df_G0_norm) != 0
+df_G0_norm[non0,] <- df_G0_norm[non0,]/rowSums(df_G0_norm[non0,])
+
+non0c <- colSums(df_G0_norm) != 0
+df_G0_norm[,non0c] <- df_G0_norm[,non0c]/colSums(df_G0_norm[,non0c])
+
